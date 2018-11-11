@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example</title>
+</head>
+<style>
+	.wrapper{
+		width: 800px;
+		height: 500px;
+		margin: 0 auto;
+		background: #c0f;
+	}
+</style>
+<body>
+	<div class="wrapper">
+		<canvas id="canvas"></canvas>
+	</div>
+</body>
+
+<script>
+	let _dom = {
+		query(dom) {
+			if(typeof dom === 'string') {
+				let element = document.querySelector(dom)
+
+				if(!element) {
+					throw new Error(`cannot find element ${element}`)
+					return document.createElement('div');
+
+				}
+				return element;
+			}
+		},
+	}
+
+	class FootBall {
+		constructor(element, opt) {
+			this.canvas = _dom.query(element);
+			this.ctx = this.canvas.getContext("2d");
+
+		}
+
+		// 初始化canvas
+		init() {
+			this._initCanvas();
+		}
+
+		// 创建canvas的dom
+		_initCanvas() {
+			let str='',
+				style = {
+				'width': '100%',
+				'height': '100%',
+				'background': '#0cf'
+			}
+
+			Object.keys(style).forEach((item) => {
+				str += `${item}:${style[item]};`;
+				this.canvas.style = str;
+			});
+		}
+	}
+
+	let football = new FootBall('#canvas');
+	football.init();
+
+
+</script>
+</html>
